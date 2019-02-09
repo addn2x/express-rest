@@ -1,5 +1,10 @@
 // Every file is a module
 
+/**
+ * Important note!
+ * This "module" will provide all infromation
+ * about current module.
+ */
 // console.log(module);
 
 const moduleA = require('./module-a');
