@@ -23,10 +23,14 @@ router.get('/get-all', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const item = items.find(i => i.id === parseInt(req.params.id));
-    if (!item) {
+    if (!item) {'/:id', (req, res) => {
+    
+    }
         return res.send(`Item not found`);
     }
-    res.send(item);
+    res.send(item);'/:id', (req, res) => {
+    
+    }
 });
 
 router.post('/', (req, res) => {
@@ -43,7 +47,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    const check = validateItem();
+    const check = validateItem(req.body);
     if (check.error) {
         return res.send(`Error: ${check.error}`);
     }
