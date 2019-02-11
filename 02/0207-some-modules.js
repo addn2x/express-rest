@@ -1,12 +1,12 @@
 const path = require('path');
 
-var pathObject =  path.parse(__filename);
+const pathObject =  path.parse(__filename);
 console.log(pathObject);
 
 const os = require('os');
 
-var totalMemory = os.totalmem();
-var freeMemory = os.freemem();
+const totalMemory = os.totalmem();
+const freeMemory = os.freemem();
 
 // Template string ES6 / ES2015
 console.log(`Total memory: ${totalMemory}`);
@@ -17,10 +17,20 @@ const fs = require('fs');
 const files = fs.readdirSync('./02');
 console.log(files);
 
-fs.readdir('./02', function(error, files) {
+// fs.readdir('./02', function(error, files) {
+// 	if (error) {
+// 		console.log('Error', error);
+// 	} else {
+// 		console.log('Result', files);
+// 	}	
+// });
+
+
+// readdir arrow form
+fs.readdir('./02', (error, files) => {
 	if (error) {
 		console.log('Error', error);
 	} else {
 		console.log('Result', files);
-	}	
+	}
 });
