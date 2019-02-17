@@ -1,11 +1,9 @@
-
-
-
+// console.log();
 
 function getUser(id) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('get user ');
+            console.log('getUser');
             resolve({
                 id: id,
                 name: 'John'
@@ -14,45 +12,46 @@ function getUser(id) {
     });
 }
 
-function getRepository(user) {
+function getRepo(username) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('Getting repository');
+            console.log('getRepo');
             resolve(['Repo 1', 'Repo 2', 'Repo 3']);
         }, 2000);
     });
 }
 
-function getCommits(repository) {
+function getCommit(repository) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log('Getting commit');
-            resolve('My commit');
+            console.log('getCommit');
+            resolve('my commit');
         }, 2000);
     });
 }
 
-/*
+// Promise
 getUser(1)
     .then((user) => {
         console.log(`${user.id} - ${user.name}`);
-        getRepository(user)
-        .then((repository) => {
-            console.log(`${repository}`);
-            getCommits(repository)
-            .then((commit) => {
-                console.log(`${commit}`);
+        getRepo(user)
+            .then((repository) => {
+                console.log(`${repository}`);
+                getCommit(repository[0])
+                    .then((commit) => {
+                        console.log(`${commit}`);
+                    });
             });
-        });
     });
-*/
 
-
+// Async/await
 async function display() {
     const user = await getUser(1);
-    const repository = await getRepository(user);
-    const commit = await getCommits(repository);
-    console.log(`${user.id} - ${user.name} - ${repository} - ${commit}`);
+    const repo = await getRepo(user.name);
+    const commit = await getCommit(repo[0]);
+    console.log(`${user.id} - ${user.name} - ${repo} - ${commit}`);
 }
 
-display();
+setTimeout(() => {
+    display();
+}, 6000);
